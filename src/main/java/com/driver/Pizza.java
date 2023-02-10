@@ -41,7 +41,7 @@ public class Pizza {
     public String getBill(){
         // your code goes here
         if(isVeg) {
-            System.out.println("Veg pizza base price = "+this.price);
+            System.out.println("Base Price Of The Pizza: "+this.price);
             bill="300";
             if(cheeseCount>0){
                 System.out.println("Extra Cheese Added: "+80*cheeseCount);
@@ -53,7 +53,7 @@ public class Pizza {
             }
         }
         else {
-            System.out.println("Non-veg pizza base price = "+this.price);
+            System.out.println("Base Price Of The Pizza: "+this.price);
             bill="400";
             if(cheeseCount>0){
                 System.out.println("Extra Cheese Added: "+80*cheeseCount);
