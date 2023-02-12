@@ -4,10 +4,10 @@ public class Pizza {
 
     private int price;
     private Boolean isVeg;
-    private String bill;
-    private int cheeseCount;
-    private int toppingCount;
-    private int bagCount;
+    private int totalAmt =0;
+    private boolean isCheeseAdded;
+    private boolean isToppingAdded;
+    private boolean isBagAdded;
 
 
     public Pizza(Boolean isVeg){
@@ -27,47 +27,48 @@ public class Pizza {
     }
 
     public void addExtraCheese(){
-        cheeseCount++;
+        isCheeseAdded = true;
     }
 
     public void addExtraToppings(){
-            toppingCount++;
+        isToppingAdded = true;
     }
 
     public void addTakeaway(){
-        bagCount++;
+        isBagAdded = true;
     }
 
     public String getBill(){
         // your code goes here
         if(isVeg) {
             System.out.println("Base Price Of The Pizza: "+this.price);
-            bill="300";
-            if(cheeseCount>0){
-                System.out.println("Extra Cheese Added: "+80*cheeseCount);
-                bill = String.valueOf((Integer.parseInt(bill) + 80*cheeseCount));
+            totalAmt+=300;
+            if(isCheeseAdded){
+                System.out.println("Extra Cheese Added: "+80);
+               totalAmt+= 80;
             }
-            if(toppingCount>0){
-                bill = String.valueOf((Integer.parseInt(bill) + 70*toppingCount));
-                System.out.println("Extra Toppings Added: "+70*toppingCount);
+            if(isToppingAdded){
+                totalAmt+= 70;
+                System.out.println("Extra Toppings Added: "+70);
             }
         }
         else {
             System.out.println("Base Price Of The Pizza: "+this.price);
-            bill="400";
-            if(cheeseCount>0){
-                System.out.println("Extra Cheese Added: "+80*cheeseCount);
-                bill = String.valueOf((Integer.parseInt(bill) + 80));
+            totalAmt+=400;
+            if(isCheeseAdded){
+                System.out.println("Extra Cheese Added: "+80);
+                totalAmt+= 80;
             }
-            if(toppingCount>0){
-                bill = String.valueOf((Integer.parseInt(bill) + 120*toppingCount));
-                System.out.println("Extra Toppings Added: "+120*toppingCount);
+            if(isToppingAdded){
+                totalAmt+= 70;
+                System.out.println("Extra Toppings Added: "+120);
             }
+
         }
-        if(bagCount>0){
-            bill = String.valueOf((Integer.parseInt(bill) + 20*bagCount));
-            System.out.println("Paperbag Added: "+20*bagCount);
+        if(isBagAdded){
+            totalAmt+=20;
+            System.out.println("Paperbag Added: "+20);
         }
-        return "Total Price: "+this.bill;
+        return "Total Price: "+totalAmt;
     }
 }
