@@ -4,71 +4,64 @@ public class Pizza {
 
     private int price;
     private Boolean isVeg;
-    private int totalAmt =0;
+    private int cheesePrice;
+    private int toppingPrice;
     private boolean isCheeseAdded;
     private boolean isToppingAdded;
     private boolean isBagAdded;
+    private String bill = "";
 
 
     public Pizza(Boolean isVeg){
         this.isVeg = isVeg;
-        if(isVeg) this.price = 300;
-        else this.price = 400;
+        if(isVeg) {
+            this.price = 300;
+            this.toppingPrice = 70;
+        }
+        else{
+            this.price = 400;
+            this.toppingPrice = 120;
+        }
+        this.cheesePrice = 80;
+       bill += "Base Price Of The Pizza: "+this.price +"\n";
     }
 
     public int getPrice(){
-        if(isVeg){
-            price = 300;
-        }
-        else{
-            price = 400;
-        }
         return this.price;
     }
 
     public void addExtraCheese(){
-        isCheeseAdded = true;
+        if(!isCheeseAdded) {
+            price+=this.cheesePrice;
+            isCheeseAdded = true;
+        }
     }
 
     public void addExtraToppings(){
-        isToppingAdded = true;
+        if(!isToppingAdded){
+            price+=this.toppingPrice;
+            isToppingAdded= true;
+        }
     }
 
     public void addTakeaway(){
-        isBagAdded = true;
+        if(!isBagAdded) {
+            price+=20;
+            isBagAdded = true;
+        }
     }
 
     public String getBill(){
-        // your code goes here
-        if(isVeg) {
-            System.out.println("Base Price Of The Pizza: "+this.price);
-            totalAmt+=300;
             if(isCheeseAdded){
-                System.out.println("Extra Cheese Added: "+80);
-               totalAmt+= 80;
+                this.bill += "Extra Cheese Added: "+this.cheesePrice+"\n";
             }
             if(isToppingAdded){
-                totalAmt+= 70;
-                System.out.println("Extra Toppings Added: "+70);
+                this.bill += "Extra Toppings Added: "+this.toppingPrice+"\n";
             }
+           if(isBagAdded){
+               this.bill += "Paperbag Added: "+20 +"\n";
         }
-        else {
-            System.out.println("Base Price Of The Pizza: "+this.price);
-            totalAmt+=400;
-            if(isCheeseAdded){
-                System.out.println("Extra Cheese Added: "+80);
-                totalAmt+= 80;
-            }
-            if(isToppingAdded){
-                totalAmt+= 70;
-                System.out.println("Extra Toppings Added: "+120);
-            }
-
-        }
-        if(isBagAdded){
-            totalAmt+=20;
-            System.out.println("Paperbag Added: "+20);
-        }
-        return "Total Price: "+totalAmt;
+           this.bill += "Total Price: "+this.price +"\n";
+        return this.bill;
     }
 }
